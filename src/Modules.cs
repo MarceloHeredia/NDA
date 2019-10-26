@@ -37,12 +37,14 @@ namespace NDA
     [Group("normie")]
     public class NormieModule : ModuleBase<SocketCommandContext>
     {
-        [Command("um carro pica x celta 2012")]
+        [Command("carro pica x celta")]
         [Summary("Responde o obvio")]
         public async Task CarroPicaVsCelta()
         {
             await Context.Message.DeleteAsync();
             await Context.Channel.SendMessageAsync("Um carro pica x celta 2012, os dois a 80km, fica lado a lado?");
+            await Context.Channel.SendMessageAsync("\\🤔");
+            await Task.Delay(2000);
             await Context.Channel.SendMessageAsync("Não fica lado a lado!");
         }
     }
@@ -100,6 +102,11 @@ namespace NDA
             {
                 await ReplyAsync("IP não encontrado.");
             }
+        }
+        [Command("start")]
+        public async Task Start()
+        {
+            await MineServer.StartServer();
         }
     }
 
