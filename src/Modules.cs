@@ -34,6 +34,19 @@ namespace NDA
         }
     }
 
+    [Group("normie")]
+    public class NormieModule : ModuleBase<SocketCommandContext>
+    {
+        [Command("um carro pica x celta 2012")]
+        [Summary("Responde o obvio")]
+        public async Task CarroPicaVsCelta()
+        {
+            await Context.Message.DeleteAsync();
+            await Context.Channel.SendMessageAsync("Um carro pica x celta 2012, os dois a 80km, fica lado a lado?");
+            await Context.Channel.SendMessageAsync("Não fica lado a lado!");
+        }
+    }
+
     // Create a module with the 'Math' prefix
     [Group("math")]
     public class MathModule : ModuleBase<SocketCommandContext>
