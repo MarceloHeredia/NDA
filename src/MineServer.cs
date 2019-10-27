@@ -18,7 +18,9 @@ namespace NDA
             {
                 StartInfo =
                 {
-                    FileName = "cmd.exe",
+                    FileName = "java.exe",
+                    Arguments = " -jar \"D:\\Games\\Server1.14\\paper-218.jar\"",
+                    WorkingDirectory = "D:\\Games\\Server1.14\\",
                     CreateNoWindow = false,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
@@ -27,15 +29,6 @@ namespace NDA
                 }
             };
             cmdProcess.Start();
-
-            cmdProcess.BeginOutputReadLine();
-
-            StreamWriter cmdWriter = cmdProcess.StandardInput;
-
-            await cmdWriter.WriteLineAsync("cd D:\\Games\\Server1.14");
-            await cmdWriter.WriteLineAsync("java -jar paper-218.jar");
-
-            cmdProcess.Close();
 
             return Task.CompletedTask;
 
