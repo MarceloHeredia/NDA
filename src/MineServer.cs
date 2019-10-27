@@ -32,5 +32,11 @@ namespace NDA
             return Task.CompletedTask;
 
         }
+        /// <summary>Calls JPS and </summary>
+        /// <returns></returns>
+        private static Boolean IsTheServerRunning()
+        {
+
+        }
     }
 }

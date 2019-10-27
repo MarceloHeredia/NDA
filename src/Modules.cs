@@ -91,16 +91,16 @@ namespace NDA
     public class MinerModule : ModuleBase<SocketCommandContext>
     {
         [Command("ip")]
-        public async Task ServerIP()
+        public async Task ServerIp()
         {
-            String externalIP = new WebClient().DownloadString("https://ipinfo.io/ip");
-            if (externalIP != null)
+            try
             {
-                await ReplyAsync($"O ip do servidor é: {externalIP}");
+                String externalIp = new WebClient().DownloadString("https://ipinfo.io/ip");
+                await ReplyAsync($"O ip do servidor é: {externalIp}");
             }
-            else
+            catch (Exception ex)
             {
-                await ReplyAsync("IP não encontrado.");
+                await ReplyAsync("IP não encontrado." + ex.Message);
             }
         }
         [Command("start")]
