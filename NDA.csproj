@@ -3,6 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <StartupObject>NDA.Program</StartupObject>
+    <ApplicationIcon>nda_1.0.ico</ApplicationIcon>
+    <Authors>mHeredia</Authors>
+    <Company>mHeredia</Company>
+    <Product>NDA the discord bot</Product>
   </PropertyGroup>
 
   <ItemGroup>
