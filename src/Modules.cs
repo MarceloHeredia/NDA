@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -34,6 +35,38 @@ namespace NDA
         }
     }
 
+    [Group("help")]
+    public class HelpModule : ModuleBase<SocketCommandContext>
+    {
+        [Command]
+        [Summary("Janela principal de ajuda")]
+        public async Task DefaultHelp()
+        {
+            await ReplyAsync("");
+        }
+
+        [Command("commands")]
+        [Summary("Lista comandos disponiveis")]
+        public async Task ListCommands()
+        {
+            StringBuilder answer = new StringBuilder();
+            answer.AppendLine("&speak <mensagem>  -> bot manda uma mensagem.");
+            answer.AppendLine("&say <mensagem> ->  bot manda uma mensagem e apaga a sua.");
+
+            answer.AppendLine("&normie carro pica x celta -> não necessita explicação.");
+
+            answer.AppendLine("&math square -> square 20 = 400");
+            answer.AppendLine("&math cube -> cube 3 = 27");
+
+            answer.AppendLine("&mine ip -> ip do servidor");
+            answer.AppendLine("&mine start -> inicia o servidor");
+            answer.AppendLine("&mine stop -> força interrupção do servidor");
+
+
+            await ReplyAsync(answer.ToString());
+        }
+    }
+
     [Group("normie")]
     public class NormieModule : ModuleBase<SocketCommandContext>
     {
@@ -60,8 +93,27 @@ namespace NDA
                     [Summary("The number to square.")]
                     int num)
         {
+            double sq = await Calc.Pow(num, 2);
             // We can also access the channel from the Command Context.
-            await Context.Channel.SendMessageAsync($"{num}^2 = {Math.Pow(num, 2)}");
+            await Context.Channel.SendMessageAsync($"{num}^2 = {sq}");
+        }
+
+        [Command("cube")]
+        [Summary("Cubes a number.")]
+        public async Task CubeAsync(
+                        [Summary("The number to cube.")] 
+                        int num)
+        {
+            double cub = await Calc.Pow(num, 3);
+            await ReplyAsync($"{num}^3 = {cub}");
+        }
+
+        [Command("fibonacci")]
+        [Summary("Gives the fibonacci number")]
+        public async Task FiboAsync(int num)
+        {
+            double fibo = await Calc.Fibo(num);
+            await ReplyAsync($"fibo {num} = {fibo}");
         }
     }
 
@@ -149,7 +201,7 @@ namespace NDA
             [Command("all")]
             public async Task CleanAllAsync()
             {
-                var messages = await this.Context.Channel.GetMessagesAsync(100).FlattenAsync();
+                var messages = await this.Context.Channel.GetMessagesAsync(500).FlattenAsync();
                 await (Context.Channel as SocketTextChannel).DeleteMessagesAsync(messages);
             }
 
