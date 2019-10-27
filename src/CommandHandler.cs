@@ -43,6 +43,7 @@ namespace NDA
             if (!command.IsSpecified)
             {
                 _logger.LogError($"Command failed to execute for [{context.User.Username}] <-> [{result.ErrorReason}]!");
+                await context.Channel.SendMessageAsync("Comando desconhecido.");
                 return;
             }
 

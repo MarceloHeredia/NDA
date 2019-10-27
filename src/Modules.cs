@@ -106,7 +106,32 @@ namespace NDA
         [Command("start")]
         public async Task Start()
         {
-            await MineServer.StartServer();
+            var t = MineServer.StartServer();
+            if (!t.Result.IsFaulted)
+            {
+                await ReplyAsync("O servidor está iniciando.");
+            }
+            else
+            {
+                await ReplyAsync(
+                    String.Concat("O servidor está em execução, em caso de problema  ",
+                                                    "usar o comando 'stop' e depois 'start' novamente. "));
+                await ReplyAsync("Não recomendado.");
+            }
+        }
+
+        [Command("stop")]
+        public async Task Stop()
+        {
+            var t = MineServer.Stop();
+            if (!t.Result.IsFaulted)
+            {
+                await ReplyAsync("O servidor foi encerrado com sucesso.");
+            }
+            else
+            {
+                await ReplyAsync("Falha ao encerrar o servidor, talvez ele não estivesse aberto?");
+            }
         }
     }
 
