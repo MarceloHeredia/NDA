@@ -15,4 +15,4 @@ This repo contains a Discord bot made in C# with the Discord.Net library.
 
 ## License
 
-MIT License! See [LICENSE.md] for more info.
+MIT License! See [LICENSE.md](LICENSE.md) for more info.
